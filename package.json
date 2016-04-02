@@ -34,6 +34,7 @@
     "static-favicon": "^2.0.0-alpha",
     "stormpath": "^0.18.2",
     "stylus": "^0.54.2",
-    "tower-uuid": "^0.1.0"
+    "tower-uuid": "^0.1.0",
+    "yandex-translate": "^2.1.0"
   }
 }
