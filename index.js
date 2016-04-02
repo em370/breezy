@@ -11,6 +11,12 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/public/html/home.html');
 });
 
+
+app.get('/lang', function(req, res){
+	res.sendFile(__dirname + '/public/html/lang.html');
+});
+
+
 app.get('/signup', function(req, res){
 	res.sendFile(__dirname + '/public/html/signup.html');
 });
