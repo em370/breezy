@@ -24,7 +24,7 @@ running = True
 i = 0
 while running == True:
 	topic = topics[i]
-	firebase.patch("/topics", topic, {}, {})
+	firebase.put("/topics", topic, {}, {})
 	i += 1
         if i > len(topics):
 		i = 0
