@@ -291,7 +291,9 @@ $('document').ready(function(){
 	var myroom="";
 	var socket=io();
 	var name="";
+	var runonce = false;
 	$('.tabl').tab();
+	
 	var user = ref.getAuth();
 	
 	var usersRef = ref.child('users');
@@ -303,16 +305,20 @@ $('document').ready(function(){
 	var meRef = usersRef.child(user.uid);
 	alert('dd');
 	meRef.on('value', function(snap) {
-		name=alert(snap.val().username);
-		groupref = meRef.child('groups');
-		groupref.on('value', function(csnap){
-			csnap.forEach(function(ccsnap){
-				alert(ccsnap.val().name);
-				$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+ccsnap.val().name+'"> '+ccsnap.val().name+' </a>');
-				$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+ccsnap.val().name+'" id="ran"></div>');
-				$('.tabl').tab();
+		if(!runonce)
+		{
+			name=alert(snap.val().username);
+			groupref = meRef.child('groups');
+			groupref.on('value', function(csnap){
+				csnap.forEach(function(ccsnap){
+					alert(ccsnap.val().name);
+					$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+ccsnap.val().name+'"> '+ccsnap.val().name+' </a>');
+					$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+ccsnap.val().name+'" id="ran"></div>');
+					$('.tabl').tab();
+				});
 			});
-		});
+			runonce = true;
+		}
 	});
 	
 	alert(user.uid);
