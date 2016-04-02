@@ -2,7 +2,10 @@
 {
 	height: 99vh;
 }
-
+body
+{
+	color: red;
+}
 .chatbox
 {
 	background-color:#f8f8ff;

@@ -1,9 +1,13 @@
+var Firebase = require('Firebase');
+var ref = new Firebase('https://breezytalk.firebaseio.com');
+
 $('document').ready(function(){
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
 	var socket=io();
 	var name="";
+	$('.tabl').tab();
 	name =prompt('enter your name');
 	$('#random').click(function(){
 		socket.emit('waiting');
