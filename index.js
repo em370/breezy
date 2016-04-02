@@ -94,9 +94,7 @@ io.sockets.on('connection', function(socket){
 		io.sockets.in(data.room).emit('request', {room: data.reqroom});
 	});
 	
-	
 });
-
 
 server.listen(port, function(){
   console.log('listening on port: '+ port);
