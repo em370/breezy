@@ -15,6 +15,7 @@ submit.addEventListener('click', function() {
         console.log("Error creating user:", error);
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
+		
       }
     });
 }, false);

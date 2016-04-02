@@ -44,6 +44,10 @@ app.get('/forgotten', function(req, res){
 	res.sendFile(__dirname + '/public/html/forgotten.html');
 });
 
+app.get('/fix', function(req, res){
+	res.sendFile(__dirname + '/public/html/fix.html');
+});
+
 io.sockets.on('connection', function(socket){
 	console.log('a user connected');
 	var inwaiting = false;

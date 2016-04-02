@@ -285,27 +285,35 @@ var Firebase = require('Firebase');
 var ref = new Firebase("https://breezytalk.firebaseio.com");
 
 $('#signup-button').click(function(){
-    var email = $('#myEmail').val();
+    var e = $('#myEmail').val();
     var pass  = $('#myPwd').val();
 	var name = $('#myName').val();
     ref.createUser({
-      email    : email,
+      email    : e,
       password : pass
     }, function(error, userData) {
         if (error) {
             alert(error);
     } else {
 			    ref.authWithPassword({
-				email    : email,
+				email    : e,
 				password : pass
-			});
-			var user= ref.getAuth();
-			var usersRef = ref.child("users").child(user.uid);
+			});    ref.authWithPassword({
+      email    : e,
+      password : pass
+    }, function(error, userData) {
+        if (error) {
+            alert("Error authorizing user:", error);
+    } else {
+			var user = ref.getAuth();
+			var usersRef = ref.child("users").child(userData.uid);
 			usersRef.set({
 				username: name,
-				userid: user.uid
+				id: userData.uid
 			});
             window.location.href = "chat";
+	}
+    });
 	}
     });
 
