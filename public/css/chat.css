@@ -1,3 +1,9 @@
+.ui.message
+{
+    position: absolute; 
+    bottom: 0;
+}
+
 .pusher
 {
 	height: 99vh;
