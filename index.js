@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 app.use(express.static('public'));
-
+var defaultNsps = '/';
 console.log(uuid());
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/public/html/home.html');
@@ -31,11 +31,27 @@ app.get('/aboutus', function(req, res){
 	res.sendFile(__dirname + '/public/html/aboutus.html');
 });
 
-/*io.sockets.on('connection', function(socket){
+app.get('/wait', function(req, res){
+	res.sendFile(__dirname + '/public/html/wait.html');
+});
+
+io.sockets.on('connection', function(socket){
 	console.log('a user connected');
-	socket.join('waitingroom');
+	socket.on('waiting', function(data) {
+		console.log('in here');
+		var waiters = io.nsps[defaultNsps].adapter.rooms['waitingroom'];
+		if(waiters)
+		{
+			var roomname = uuid();
+			io.sockets.in('waitingroom').emit('found', {room: roomname});
+		}
+		else{
+			socket.join('waitingroom');
+		}
+	});
 	
-}*/
+	
+});
 
 
 server.listen(port, function(){
