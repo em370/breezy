@@ -286,10 +286,11 @@ var ref = new Firebase("https://breezytalk.firebaseio.com");
 
 $('document').ready(function(){
 	var user = ref.getAuth();
-	if(!user)
+	alert(user.uid);
+	/*if(user)
 	{
-		alert('no user');
-	}
+		alert('logged in'):
+	}*/
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
