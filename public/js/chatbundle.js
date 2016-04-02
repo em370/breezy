@@ -388,6 +388,8 @@ $('document').ready(function(){
 		meRef.child('groups').push().set({
 			name: newgroupname
 		});
+		$('#groupjoiner').modal('toggle');
+		$('#groupinput').val("");
 	}
 });
 

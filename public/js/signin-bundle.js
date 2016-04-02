@@ -295,6 +295,7 @@ $('#signin-button').click(function(){
             alert("Error authorizing user:", error);
     } else {
             window.location.href = "chat";
+	}
     });
 });
 
