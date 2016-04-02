@@ -4,6 +4,8 @@ var uuid= require('tower-uuid');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
+var key = "trnsl.1.1.20160402T034217Z.7ddc219970f6b6c9.323a12de2c42e5f2bf29acccc5bbd76682a610d2";
+var translate = require('yandex-translate')(key);
 app.use(express.static('public'));
 var defaultNsps = '/';
 console.log(uuid());
@@ -48,6 +50,9 @@ app.get('/fix', function(req, res){
 	res.sendFile(__dirname + '/public/html/fix.html');
 });
 
+
+
+
 io.sockets.on('connection', function(socket){
 	console.log('a user connected');
 	var inwaiting = false;
@@ -79,6 +84,16 @@ io.sockets.on('connection', function(socket){
 	socket.on('sentmessage', function(data){
 		console.log(data.room);
 		io.sockets.in(data.room).emit('gotmessage', {name:data.name, room:data.room, message:data.message});
+	});
+	
+	socket.on('translate', function(data){
+		console.log('trans');
+		language = data.lang;
+		translate.translate(data.message,{to: language}, function(err, res){
+			console.log(err);
+			console.log(res.text);
+			socket.emit('translated', {name: data.name, message: res.text,room: data.room});
+		});
 	});
 	
 	

@@ -36,6 +36,7 @@
     "stormpath": "^0.18.2",
     "stylus": "^0.54.2",
     "tower-uuid": "^0.1.0",
+    "yandex": "0.0.0-reserved",
     "yandex-translate": "^2.1.0"
   }
 }

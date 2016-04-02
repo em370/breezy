@@ -290,9 +290,10 @@ $('document').ready(function(){
 	var myroom="";
 	var socket=io();
 	var name="";
+	var lang="";
 	var runonce = false;
 	$('.tabl').tab();
-	
+	alert('hello');
 	var user = ref.getAuth();
 	
 	var usersRef = ref.child('users');
@@ -304,6 +305,7 @@ $('document').ready(function(){
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
+		lang = snap.val().lang;
 	});
 	var gRef = meRef.child('groups');
 	gRef.on('child_added', function(snap) {
@@ -389,9 +391,13 @@ $('document').ready(function(){
 	});
 	
 	socket.on('gotmessage', function(data){
-		newmessage(data);
+		socket.emit('translate', {name: data.name, room: data.room, message: data.message, lang: lang});
+		//newmessage(data);
 	});
 	
+	socket.on('translated', function(data){
+		newmessage(data);
+	});
 	function newmessage(data)
 	{
 		$("div[data-tab='"+ data.room + "']").append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
