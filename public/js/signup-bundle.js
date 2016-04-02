@@ -284,16 +284,15 @@ module.exports = Firebase;
 var Firebase = require('Firebase');
 var ref = new Firebase("https://breezytalk.firebaseio.com");
 
-console.log('the file ran!');
-
-var submit = document.getElementById("submit-button");
-console.log(submit);
+var submit = document.getElementById("signup-button");
+var email  = document.getElementById("myEmail").value;
+var pass   = document.getElementById("myPwd").value;
 
 submit.addEventListener('click', function() {
-    alert('Hello world');
+    alert(email);
     ref.createUser({
-      email    : "bobtony@firebase.com",
-      password : "correcthorsebatterystaple"
+      email    : email,
+      password : pass
     }, function(error, userData) {
       if (error) {
         console.log("Error creating user:", error);
