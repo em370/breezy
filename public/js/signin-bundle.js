@@ -290,7 +290,13 @@ $('#signin-button').click(function(){
     ref.authWithPassword({
       email    : email,
       password : pass
+    }, function(error, userData) {
+        if (error) {
+            console.log("Error creating user:", error);
+    } else {
+            console.log("Successfully created user account with uid:", userData.uid);
     });
 });
+
 
 },{"Firebase":1}]},{},[2]);

@@ -13,6 +13,10 @@ $('document').ready(function(){
 		socket.emit('waiting');
 	});
 
+        $('#logout').click(function(){
+		ref.unauth();
+	});
+
 	$('#sender').click(function(){
 		sendmess();
 	});	
