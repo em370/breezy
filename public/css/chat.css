@@ -1,0 +1,11 @@
+.pusher
+{
+	height: 99vh;
+}
+
+.ui.fluid.action.input
+{
+	position: absolute;
+	bottom: 0;
+	width:81vw;
+}

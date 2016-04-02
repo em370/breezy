@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/em370/breezy#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "tower-uuid": "^0.1.0"
   }
 }
