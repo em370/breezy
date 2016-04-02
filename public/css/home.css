@@ -4,9 +4,15 @@
 
 }
 
-.ui.blue.header
+.ui.header.blue
 {
 	margin-top: 2em;
+	font-size: 2.5em;
+	font-family: 'Happy Monkey', cursive;
+}
+.ui.header.green
+{
+	margin-top: 0em;
 	font-size: 4em;
 	font-family: 'Happy Monkey', cursive;
 }
