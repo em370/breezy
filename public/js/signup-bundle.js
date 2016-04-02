@@ -287,6 +287,7 @@ var ref = new Firebase("https://breezytalk.firebaseio.com");
 $('#signup-button').click(function(){
     var email = $('#myEmail').val();
     var pass  = $('#myPwd').val();
+	var name = $('#myName').val();
     ref.createUser({
       email    : email,
       password : pass
@@ -294,12 +295,20 @@ $('#signup-button').click(function(){
         if (error) {
             alert(error);
     } else {
+			    ref.authWithPassword({
+				email    : email,
+				password : pass
+			});
+			var user= ref.getAuth();
+			var usersRef = ref.child("users").child(user.uid);
+			usersRef.set({
+				username: name,
+				userid: user.uid
+			});
             window.location.href = "chat";
+	}
     });
-    ref.authWithPassword({
-      email    : email,
-      password : pass
-    });
+
 });
 
 },{"Firebase":1}]},{},[2]);

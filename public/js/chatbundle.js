@@ -292,13 +292,21 @@ $('document').ready(function(){
 	var socket=io();
 	var name="";
 	$('.tabl').tab();
-	user = ref.getAuth();
+	var user = ref.getAuth();
+	
+	var usersRef = ref.child('users');
 	if(!user)
 	{
 		window.location.href = "signin";
 	}
+	alert('here');
+	var meRef = usersRef.child(user.uid);
+	alert('dd');
+	meRef.on('value', function(snap) {
+		name=alert(snap.val().username);
+		
+	});
 	alert(user.uid);
-	name =prompt('enter your name');
 	$('#random').click(function(){
 		socket.emit('waiting');
 	});
@@ -364,6 +372,13 @@ $('document').ready(function(){
 		var mess = $('#messfield').val();
 		$('#messfield').val("");
 		socket.emit('sentmessage', {message:mess, name:name, room:myroom});
+	}
+	function joingroup()
+	{
+		var newgroupname = $('#groupinput').val();
+		meRef.child('groups').push().set({
+			name: newgroupname
+		});
 	}
 });
 
