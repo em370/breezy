@@ -74,8 +74,10 @@ io.sockets.on('connection', function(socket){
 	})
 	socket.on('join', function(data){
 		socket.join(data.room);
+		console.log('joining room');
 	});
 	socket.on('sentmessage', function(data){
+		console.log(data.room);
 		io.sockets.in(data.room).emit('gotmessage', {name:data.name, room:data.room, message:data.message});
 	});
 	

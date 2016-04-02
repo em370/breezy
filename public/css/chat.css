@@ -10,7 +10,7 @@ body
 {
 	background-color:#f8f8ff;
 	position: absolute;
-	height: calc(100vh - 2.6em);
+	height: calc(100vh - 4em);
 	width: 81%;
 	overflow: auto;
 }

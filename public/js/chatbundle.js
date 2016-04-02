@@ -285,7 +285,6 @@ var Firebase = require('Firebase');
 var ref = new Firebase('https://breezytalk.firebaseio.com');
 
 $('document').ready(function(){
-	alert('hello');
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
@@ -301,15 +300,18 @@ $('document').ready(function(){
 	{
 		window.location.href = "signin";
 	}
-	alert('here');
+	
 	var meRef = usersRef.child(user.uid);
+	meRef.on("value", function(snap){
+		name = snap.val().username;
+	});
 	var gRef = meRef.child('groups');
-	alert('dd');
 	gRef.on('child_added', function(snap) {
 		
-		alert(snap.val().username);
+		name =snap.val().username;
 		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> '+snap.val().name+' </a>');
 		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+snap.val().name+'" id="ran"></div>');
+		socket.emit('join', {room: snap.val().name});
 		$('.tabl').tab();
 		/*if(!runonce)
 		{
@@ -327,7 +329,6 @@ $('document').ready(function(){
 		}*/
 	});
 	
-	alert(user.uid);
 	$('#random').click(function(){
 		socket.emit('waiting');
 	});
@@ -360,9 +361,13 @@ $('document').ready(function(){
 		}
 	});
 	
+	$('body').on('click', '.tabl', function(event)
+	{
+		myroom = $(this).data('tab');
+	});
+	
 	$('#addfriend').click(function()
 	{
-		alert('run');
 		$('#friendadder').modal('toggle');
 	});
 	
@@ -384,8 +389,9 @@ $('document').ready(function(){
 	
 	function newmessage(data)
 	{
-		$('#ran').append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
-		$('#ran').scrollTop($('#ran').prop("scrollHeight"));
+		$("div[data-tab='"+ data.room + "']").append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
+		//$('#ran').append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
+		$("div[data-tab='"+ data.room + "']").scrollTop($("div[data-tab='"+data.room+"']").prop("scrollHeight"));
 	}
 	
 	function sendmess()
