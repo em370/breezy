@@ -285,12 +285,19 @@ var Firebase = require('Firebase');
 var ref = new Firebase('https://breezytalk.firebaseio.com');
 
 $('document').ready(function(){
+	alert('hello');
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
 	var socket=io();
 	var name="";
 	$('.tabl').tab();
+	user = ref.getAuth();
+	if(!user)
+	{
+		window.location.href = "signin";
+	}
+	alert(user.uid);
 	name =prompt('enter your name');
 	$('#random').click(function(){
 		socket.emit('waiting');
@@ -304,6 +311,18 @@ $('document').ready(function(){
 		sendmess();
 	});	
 	
+	$('#groupbutton').click(function(){
+		joingroup();
+	});
+	
+	$('#groupinput').keydown(function(key)
+	{
+		if(key.which == 13)
+		{
+			joingroup();
+		}
+	});
+	
 	$('#messfield').keydown(function(key)
 	{
 		if(key.which == 13)
@@ -314,7 +333,13 @@ $('document').ready(function(){
 	
 	$('#addfriend').click(function()
 	{
+		alert('run');
 		$('#friendadder').modal('toggle');
+	});
+	
+	$('#groupjoin').click(function()
+	{
+		$('#groupjoiner').modal('toggle');
 	});
 	
 	socket.on('found', function(data){
