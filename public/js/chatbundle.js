@@ -300,7 +300,7 @@ $('document').ready(function(){
 	{
 		window.location.href = "signin";
 	}
-	
+        	
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
@@ -330,8 +330,15 @@ $('document').ready(function(){
 			runonce = true;
 		}*/
 	});
+        
+        $('#closable-message .close')
+          .on('click', function() {
+            $(this)
+              .closest('.message')
+              .transition('fade');
+        });	
 	
-	$('#random').click(function(){
+        $('#random').click(function(){
 		socket.emit('waiting');
 	});
 
