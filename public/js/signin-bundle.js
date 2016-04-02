@@ -292,12 +292,10 @@ $('#signin-button').click(function(){
       password : pass
     }, function(error, userData) {
         if (error) {
-            console.log("Error creating user:", error);
+            alert("Error authorizing user:", error);
     } else {
-            console.log("Successfully created user account with uid:", userData.uid);
-			alert('working');
-    }
-	});
+            window.location.href = "chat";
+    });
 });
 
 

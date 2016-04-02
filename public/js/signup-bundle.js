@@ -290,6 +290,11 @@ $('#signup-button').click(function(){
     ref.createUser({
       email    : email,
       password : pass
+    }, function(error, userData) {
+        if (error) {
+            alert(error);
+    } else {
+            window.location.href = "chat";
     });
     ref.authWithPassword({
       email    : email,
