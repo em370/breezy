@@ -9,10 +9,10 @@ var translate = require('yandex-translate')(key);
 app.use(express.static('public'));
 var defaultNsps = '/';
 console.log(uuid());
+
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/public/html/home.html');
 });
-
 
 app.get('/lang', function(req, res){
 	res.sendFile(__dirname + '/public/html/lang.html');
@@ -45,12 +45,6 @@ app.get('/wait', function(req, res){
 app.get('/forgotten', function(req, res){
 	res.sendFile(__dirname + '/public/html/forgotten.html');
 });
-
-app.get('/fix', function(req, res){
-	res.sendFile(__dirname + '/public/html/fix.html');
-});
-
-
 
 
 io.sockets.on('connection', function(socket){
