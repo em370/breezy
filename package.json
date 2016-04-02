@@ -1,0 +1,25 @@
+{
+  "name": "breezy",
+  "version": "1.0.0",
+  "description": "breeezytalk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/em370/breezy.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Eric Minor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/em370/breezy/issues"
+  },
+  "homepage": "https://github.com/em370/breezy#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
