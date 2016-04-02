@@ -288,13 +288,10 @@ $('document').ready(function(){
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
-	var ranroom="";
 	var socket=io();
 	var name="";
 	var lang="";
-	var myself = true;
 	var runonce = false;
-	var roomtojoin="";
 	$('.tabl').tab();
 	var user = ref.getAuth();
 	
@@ -303,7 +300,7 @@ $('document').ready(function(){
 	{
 		window.location.href = "signin";
 	}
-	
+        	
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
@@ -316,7 +313,6 @@ $('document').ready(function(){
 		name =snap.val().username;
 		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> '+snap.val().name+' </a>');
 		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+snap.val().name+'" id="ran"></div>');
-		$('#addbuttons').append('<button class="ui button roomaddbutton" id="but'+snap.val().name+'">'+ snap.val().name +'</button>');
 		socket.emit('join', {room: snap.val().name});
 		$('.tabl').tab();
 		/*if(!runonce)
@@ -334,34 +330,19 @@ $('document').ready(function(){
 			runonce = true;
 		}*/
 	});
+        
+        $('#closable-message .close')
+          .on('click', function() {
+            $(this)
+              .closest('.message')
+              .transition('fade');
+        });	
 	
-	
-	$('body').on('click', '.roomaddbutton', function(event)
-	{
-		var whichroom = $(this).text();
-		socket.emit('addrequest', {room: ranroom, reqroom: whichroom});
-		myself = false;
-		$('#friendadder').modal('toggle');
-		
-	});
-	
-	$('#yes').click(function(){
-		var newgroupname = roomtojoin;
-		meRef.child('groups').push().set({
-			name: newgroupname
-		});
-		$('#roomadder').modal('toggle');
-	});
-	
-	$('#no').click(function(){
-		$('#roomadder').modal('toggle');
-	});
-	
-	$('#random').click(function(){
+        $('#random').click(function(){
 		socket.emit('waiting');
 	});
 
-        $('#Logout').click(function(){
+        $('#logout').click(function(){
 		ref.unauth();
 		window.location.href="signin";
 	});
@@ -419,7 +400,7 @@ $('document').ready(function(){
 		$('.randomer').attr('data-tab', data.room);
 		$('.tabl').tab();
 		$('#tfriend').click();
-		ranroom=data.room;
+
 		
 	});
 	
@@ -428,19 +409,6 @@ $('document').ready(function(){
 		
 		socket.emit('translate', {name: data.name, room: data.room, message: data.message, lang: lang});
 		//newmessage(data);
-	});
-	
-	socket.on('request', function(data){
-		roomtojoin=data.room;
-		if(myself)
-		{
-			$('#roominfo').text("Do you want to join "+data.room+"?");
-			$('#roomadder').modal('toggle');
-		}
-		else
-		{
-			myself=true;
-		}
 	});
 	
 	socket.on('translated', function(data){
