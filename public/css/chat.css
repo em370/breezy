@@ -14,7 +14,7 @@ body
 	width: 81%;
 	overflow: auto;
 }
-​
+
 .ui.fluid.action.input
 {
 	position: absolute;
@@ -22,7 +22,7 @@ body
 	width:81vw;
 	height: 2.5em;
 }
-​
+
 .chatbox p:nth-child(odd)
 {
 	background-color: #eee;
