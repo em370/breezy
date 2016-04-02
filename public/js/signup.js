@@ -3,7 +3,7 @@ var ref = new Firebase("https://breezytalk.firebaseio.com");
 
 console.log('the file ran!');
 
-var submit = document.getElementById("submit-button");
+var submit = document.getElementById("signup-button");
 console.log(submit);
 
 submit.addEventListener('click', function() {
