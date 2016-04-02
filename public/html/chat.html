@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="//www.parsecdn.com/js/parse-1.6.12.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/chat.css"/>
 		<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
@@ -32,12 +31,11 @@
 				</a>
 			</div>
 			<div class="pusher">
-				<div class="chatbox">
-				a
+				<div class="chatbox" id="ran">
 				</div>
 				<div class="ui fluid action input">
-					<input type="text" placeholder="Say Something">
-					<div class="ui button">Send</div>
+					<input id="messfield" type="text" placeholder="Say Something">
+					<div class="ui button" id="sender">Send</div>
 				</div>
 			</div>
 		</div>

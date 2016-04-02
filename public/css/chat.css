@@ -5,7 +5,11 @@
 
 .chatbox
 {
-	background-color:red;
+	background-color:#f8f8ff;
+	position: absolute;
+	height: calc(100vh - 2.6em);
+	width: 81%;
+	overflow: auto;
 }
 
 .ui.fluid.action.input
@@ -13,4 +17,10 @@
 	position: absolute;
 	bottom: 0;
 	width:81vw;
+	height: 2.5em;
+}
+
+li:nth-child(odd)
+{
+	background-color: black;
 }

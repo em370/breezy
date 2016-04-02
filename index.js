@@ -16,7 +16,6 @@ app.get('/lang', function(req, res){
 	res.sendFile(__dirname + '/public/html/lang.html');
 });
 
-
 app.get('/signup', function(req, res){
 	res.sendFile(__dirname + '/public/html/signup.html');
 });
@@ -68,6 +67,12 @@ io.sockets.on('connection', function(socket){
 	socket.on('stop', function(data){
 		socket.leave('waitingroom');
 		console.log('leaving room');
+	})
+	socket.on('join', function(data){
+		socket.join(data.room);
+	});
+	socket.on('sentmessage', function(data){
+		io.sockets.in(data.room).emit('gotmessage', {name:data.name, room:data.room, message:data.message});
 	});
 	
 	
