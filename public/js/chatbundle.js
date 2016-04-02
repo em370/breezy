@@ -293,7 +293,6 @@ $('document').ready(function(){
 	var lang="";
 	var runonce = false;
 	$('.tabl').tab();
-	alert('hello');
 	var user = ref.getAuth();
 	
 	var usersRef = ref.child('users');
@@ -390,13 +389,17 @@ $('document').ready(function(){
 		myroom=data.room;
 		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+data.room+'" id="ran"></div>');
 		//$('#ran').append('<p>You Found a Friend!<p>');
-		$("div[data-tab='"+ data.room + "']").append('<p>You found a Friend!<p>');
-		$('.randomer').data("tab", 	data.room);
+		$('div[data-tab="'+ data.room + '"]').append('<p>You found a Friend!<p>');
+		$('.randomer').attr('data-tab', data.room);
 		$('.tabl').tab();
+		$('#tfriend').click();
+
 		
 	});
 	
 	socket.on('gotmessage', function(data){
+
+		
 		socket.emit('translate', {name: data.name, room: data.room, message: data.message, lang: lang});
 		//newmessage(data);
 	});
