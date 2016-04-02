@@ -16,3 +16,14 @@
 	font-size: 4em;
 	font-family: 'Happy Monkey', cursive;
 }
+
+.ui.header.black
+{
+	margin-top: 2em;
+	font-size: 1.5em;
+	font-family: 'Happy Monkey', cursive;
+}
+.ui.huge.green.button
+{
+	margin-bottom: 2em;
+}
