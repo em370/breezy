@@ -282,15 +282,9 @@ module.exports = Firebase;
 
 },{}],2:[function(require,module,exports){
 var Firebase = require('Firebase');
-var ref = new Firebase("https://breezytalk.firebaseio.com");
+var ref = new Firebase('https://breezytalk.firebaseio.com');
 
 $('document').ready(function(){
-	var user = ref.getAuth();
-	alert(user.uid);
-	/*if(user)
-	{
-		alert('logged in'):
-	}*/
 	$('.ui.accordion').accordion();
 	var rooms = [];
 	var myroom="";
@@ -300,6 +294,10 @@ $('document').ready(function(){
 	name =prompt('enter your name');
 	$('#random').click(function(){
 		socket.emit('waiting');
+	});
+
+        $('#logout').click(function(){
+		ref.unauth();
 	});
 
 	$('#sender').click(function(){
@@ -343,4 +341,5 @@ $('document').ready(function(){
 		socket.emit('sentmessage', {message:mess, name:name, room:myroom});
 	}
 });
+
 },{"Firebase":1}]},{},[2]);
