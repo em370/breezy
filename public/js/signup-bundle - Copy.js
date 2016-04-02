@@ -283,11 +283,12 @@ module.exports = Firebase;
 },{}],2:[function(require,module,exports){
 var Firebase = require('Firebase');
 var ref = new Firebase("https://breezytalk.firebaseio.com");
-
+$('.ui.dropdown').dropdown();
 $('#signup-button').click(function(){
     var e = $('#myEmail').val();
     var pass  = $('#myPwd').val();
 	var name = $('#myName').val();
+	var lang = $('#langselect').dropdown('get text');
     ref.createUser({
       email    : e,
       password : pass
@@ -309,7 +310,8 @@ $('#signup-button').click(function(){
 			var usersRef = ref.child("users").child(userData.uid);
 			usersRef.set({
 				username: name,
-				id: userData.uid
+				id: userData.uid,
+				language: lang
 			});
             window.location.href = "chat";
 	}
