@@ -1,9 +1,14 @@
-from firebase.firebase import FirebaseApplication, FirebaseAuthentication
+#from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 
-authentication = FirebaseAuthentication('AFH2c3nhbeT6gvRfjlg7iKHYROYVZmz4CIstByVy', 'em3700@yahoo.com', True, True)
-firebase = FirebaseApplication('https://breezytalk.firebaseio.com', authentication)
+#authentication = FirebaseAuthentication('AFH2c3nhbeT6gvRfjlg7iKHYROYVZmz4CIstByVy', 'em3700@yahoo.com', True, True)
+#firebase = FirebaseApplication('https://breezytalk.firebaseio.com', authentication)
 
+import os
+import json
 import time
+
+def PUT(entry, table):
+    os.system("curl -X PUT -d '" + json.dumps(entry) + "' '" + 'https://breezytalk.firebaseio.com' + table + "'")
 
 topics = ["Religion", 
 	"Science",
@@ -24,7 +29,7 @@ running = True
 i = 0
 while running == True:
 	topic = topics[i]
-	firebase.put("/topics", topic, {}, {})
+	PUT(topic, '/topics/.json')
 	i += 1
         if i > len(topics):
 		i = 0
