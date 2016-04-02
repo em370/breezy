@@ -96,6 +96,10 @@ io.sockets.on('connection', function(socket){
 		});
 	});
 	
+	socket.on('addrequest', function(data){
+		io.sockets.in(data.room).emit('request', {room: data.reqroom});
+	});
+	
 	
 });
 
