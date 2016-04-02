@@ -7,7 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css'>
 		<script src="semantic/dist/semantic.min.js"></script>
-		<script src="js/signin.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/signin.css"/>
 		<title>BreezyTalk</title>
 	</head>
@@ -18,10 +17,10 @@
 			Welcome Back!
 		</h1>
 		<p>
-			<label class="ui label"> Username </label>
+			<label class="ui label"> Email </label>
 			<input type ="text"
-				   id = "myName"
-				   value ="Pick a name!" />
+				   id = "myEmail"
+				   value ="What's your email?" />
 		</p>
 		<p>
 			<label class="ui label"> Password </label>
@@ -29,7 +28,8 @@
 				   id = "myPwd"
 				   value ="secret" />
 		</p>
-		<button class="ui huge green button"> Log In </button>
+		<a href ="chat" class="ui huge green button" id="signin-button"> Log In </a>
+		<script src="/js/signin-bundle.js"></script>
 		<a href ="forgotten" class="ui huge green button"> Forgot Password? </a>
 		</div>		   
 	</body>
