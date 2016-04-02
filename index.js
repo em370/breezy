@@ -35,6 +35,10 @@ app.get('/wait', function(req, res){
 	res.sendFile(__dirname + '/public/html/wait.html');
 });
 
+app.get('/forgotten', function(req, res){
+	res.sendFile(__dirname + '/public/html/forgotten.html');
+});
+
 io.sockets.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('waiting', function(data) {
@@ -44,6 +48,7 @@ io.sockets.on('connection', function(socket){
 		{
 			var roomname = uuid();
 			io.sockets.in('waitingroom').emit('found', {room: roomname});
+			socket.leave('waitingroom');
 		}
 		else{
 			socket.join('waitingroom');
