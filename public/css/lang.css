@@ -10,3 +10,8 @@
 	font-size: 4em;
 	font-family: 'Happy Monkey', cursive;
 }
+
+.ui.huge.green.button
+{
+    margin-top: 3em;
+}
