@@ -46,10 +46,6 @@ app.get('/forgotten', function(req, res){
 	res.sendFile(__dirname + '/public/html/forgotten.html');
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 292715175a19f60b8da139f53ae8f7689bfce8ac
 io.sockets.on('connection', function(socket){
 	console.log('a user connected');
 	var inwaiting = false;
@@ -91,17 +87,15 @@ io.sockets.on('connection', function(socket){
 			console.log(res.text);
 			socket.emit('translated', {name: data.name, message: res.text,room: data.room});
 		});
-<<<<<<< HEAD
+
 	});
 	
 	socket.on('addrequest', function(data){
 		io.sockets.in(data.room).emit('request', {room: data.reqroom});
 	});
 	
-=======
+
 	});	
->>>>>>> 292715175a19f60b8da139f53ae8f7689bfce8ac
-});
 
 server.listen(port, function(){
   console.log('listening on port: '+ port);
