@@ -335,6 +335,7 @@ $('document').ready(function(){
 
         $('#logout').click(function(){
 		ref.unauth();
+		window.location.href="signin";
 	});
 
 	$('#sender').click(function(){
@@ -376,6 +377,10 @@ $('document').ready(function(){
 		$('#groupjoiner').modal('toggle');
 	});
 	
+	$('#groupcancel').click(function()
+	{
+		$('#groupjoiner').modal('toggle');
+	});
 	socket.on('found', function(data){
 		socket.emit('stop');
 		socket.emit('join',{room: data.room, name: name});
