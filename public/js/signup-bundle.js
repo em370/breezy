@@ -284,11 +284,11 @@ module.exports = Firebase;
 var Firebase = require('Firebase');
 var ref = new Firebase("https://breezytalk.firebaseio.com");
 
-var submit = document.getElementById("signup-button");
-var email  = document.getElementById("myEmail").value;
-var pass   = document.getElementById("myPwd").value;
-
-submit.addEventListener('click', function() {
+//var submit = document.getElementById("signup-button");
+//var email  = document.getElementById("myEmail").value;
+//var pass   = document.getElementById("myPwd").value;
+alert('here');
+/*submit.addEventListener('click', function() {
     alert(email);
     ref.createUser({
       email    : email,
@@ -300,7 +300,22 @@ submit.addEventListener('click', function() {
         console.log("Successfully created user account with uid:", userData.uid);
       }
     });
-}, false);
+}, false);*/
+$('#signup-button').click(function(){
+	var email = $('#myEmail').val();
+	var pass = $('#myPwd').val();
+	alert(email);
+    ref.createUser({
+      email    : email,
+      password : pass
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+      }
+	});
+});
 
 
 },{"Firebase":1}]},{},[2]);
