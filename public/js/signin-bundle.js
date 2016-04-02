@@ -284,13 +284,9 @@ module.exports = Firebase;
 var Firebase = require('Firebase');
 var ref = new Firebase("https://breezytalk.firebaseio.com");
 
-$('#signup-button').click(function(){
+$('#signin-button').click(function(){
     var email = $('#myEmail').val();
     var pass  = $('#myPwd').val();
-    ref.createUser({
-      email    : email,
-      password : pass
-    });
     ref.authWithPassword({
       email    : email,
       password : pass
