@@ -361,7 +361,7 @@ $('document').ready(function(){
 		socket.emit('waiting');
 	});
 
-        $('#logout').click(function(){
+        $('#Logout').click(function(){
 		ref.unauth();
 		window.location.href="signin";
 	});
