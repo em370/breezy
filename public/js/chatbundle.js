@@ -328,6 +328,7 @@ $('document').ready(function(){
 
         $('#logout').click(function(){
 		ref.unauth();
+		window.location.href="signin";
 	});
 
 	$('#sender').click(function(){
