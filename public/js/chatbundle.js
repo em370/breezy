@@ -305,8 +305,11 @@ $('document').ready(function(){
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
-		lang = snap.val().lang;
+		lang = snap.val().language;
+		alert(lang);
+		alert(name);
 	});
+		
 	var gRef = meRef.child('groups');
 	gRef.on('child_added', function(snap) {
 		
