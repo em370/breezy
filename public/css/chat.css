@@ -20,7 +20,11 @@
 	height: 2.5em;
 }
 
-li:nth-child(odd)
+.chatbox p:nth-child(odd)
 {
-	background-color: black;
+	background-color: #eee;
+}
+.centered
+{
+	text-align: center;
 }

@@ -21,10 +21,16 @@ $('document').ready(function(){
 		}
 	});
 	
+	$('#addfriend').click(function()
+	{
+		$('#friendadder').modal('toggle');
+	});
+	
 	socket.on('found', function(data){
 		socket.emit('stop');
 		socket.emit('join',{room: data.room, name: name});
 		myroom=data.room;
+		$('#ran').append('<p>You Found a Friend!<p>');
 	});
 	
 	socket.on('gotmessage', function(data){

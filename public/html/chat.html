@@ -11,23 +11,35 @@
 		<title>Internet Chat</title>
 	</head>
 	<body>
+		<div id="friendadder" class="ui basic modal">
+			<i class="close icon"></i>
+			<div class="header">
+				<p class="centered">Add to which group?<p>
+			</div>
+			<button class="ui button"> Group 1 </button>
+		</div>
 		<div class="ui bottom attached segment pushable">
 			<div class="ui visible inverted left vertical sidebar menu">
-				<a class="item">
-				<i class="home icon"></i>
-				Home
-				</a>
-				<a class="item">
-				<i class="block layout icon"></i>
-				Topics
-				</a>
+				<div class="ui inverted accordion">
+					<div class="inverted title">
+						<i class="dropdown icon"></i>
+						Groups
+					</div>
+					<div class="inverted content">
+					<a class="ui inverted item">Group 1</a>
+					</div>
+				</div>
 				<a class="item" id="random">
 				<i class="smile icon"></i>
 				Find Friend
 				</a>
+				<a class="item" id="addfriend">
+				<i class="smile icon"></i>
+				Add Current Friend
+				</a>
 				<a class="item">
-				<i class="calendar icon"></i>
-				History
+				<i class="smile icon"></i>
+				Return to chatting with new Friend
 				</a>
 			</div>
 			<div class="pusher">
