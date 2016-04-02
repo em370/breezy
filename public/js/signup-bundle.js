@@ -287,7 +287,12 @@ var ref = new Firebase("https://breezytalk.firebaseio.com");
 $('#signup-button').click(function(){
     var e = $('#myEmail').val();
     var pass  = $('#myPwd').val();
-	var name = $('#myName').val();
+	  var name = $('#myName').val();
+    ref.child('user_emails').once('value', function(esnap) {
+      esnap.forEach(function(eesnap) {
+        alert(eesnap.val());
+    });
+  });
     ref.createUser({
       email    : e,
       password : pass
