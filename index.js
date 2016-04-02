@@ -41,18 +41,27 @@ app.get('/forgotten', function(req, res){
 
 io.sockets.on('connection', function(socket){
 	console.log('a user connected');
+	var inwaiting = false;
 	socket.on('waiting', function(data) {
-		console.log('in here');
-		var waiters = io.nsps[defaultNsps].adapter.rooms['waitingroom'];
-		if(waiters)
+		if(!inwaiting)
 		{
-			var roomname = uuid();
-			io.sockets.in('waitingroom').emit('found', {room: roomname});
-			socket.leave('waitingroom');
+			console.log('in here');
+			var waiters = io.nsps[defaultNsps].adapter.rooms['waitingroom'];
+			if(waiters)
+			{
+				var roomname = uuid();
+				socket.join('waitingroom');
+				io.sockets.in('waitingroom').emit('found', {room: roomname});
+			}
+			else{
+				socket.join('waitingroom');
+				inwaiting=true;
+			}
 		}
-		else{
-			socket.join('waitingroom');
-		}
+	});
+	socket.on('stop', function(data){
+		socket.leave('waitingroom');
+		console.log('leaving room');
 	});
 	
 	

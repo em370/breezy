@@ -6,6 +6,7 @@ $('document').ready(function(){
 		socket.emit('waiting');
 	});
 	socket.on('found', function(){
+		socket.emit('stop');
 		alert('worked');
 	});
 });
