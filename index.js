@@ -9,8 +9,20 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/public/html/home.html');
 });
 
+app.get('/signup', function(req, res){
+	res.sendFile(__dirname + '/public/html/signup.html');
+});
+
 app.get('/test', function(req, res){
 	res.sendFile(__dirname + '/public/html/test.html');
+});
+
+app.get('/signin', function(req, res){
+	res.sendFile(__dirname + '/public/html/signin.html');
+});
+
+app.get('/chat', function(req, res){
+	res.sendFile(__dirname + '/public/html/chat.html');
 });
 
 server.listen(port, function(){
