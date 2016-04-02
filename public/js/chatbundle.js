@@ -306,8 +306,6 @@ $('document').ready(function(){
 	meRef.on("value", function(snap){
 		name = snap.val().username;
 		lang = snap.val().language;
-		alert(lang);
-		alert(name);
 	});
 		
 	var gRef = meRef.child('groups');
@@ -390,7 +388,12 @@ $('document').ready(function(){
 		socket.emit('stop');
 		socket.emit('join',{room: data.room, name: name});
 		myroom=data.room;
-		$('#ran').append('<p>You Found a Friend!<p>');
+		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+data.room+'" id="ran"></div>');
+		//$('#ran').append('<p>You Found a Friend!<p>');
+		$("div[data-tab='"+ data.room + "']").append('<p>You found a Friend!<p>');
+		$('.randomer').data("tab", 	data.room);
+		$('.tabl').tab();
+		
 	});
 	
 	socket.on('gotmessage', function(data){
