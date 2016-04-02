@@ -20,10 +20,8 @@
   },
   "homepage": "https://github.com/em370/breezy#readme",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.13.4",
-    "tower-uuid": "^0.1.0"
-=======
+    "tower-uuid": "^0.1.0",
     "body-parser": "^1.15.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.1",
@@ -36,6 +34,5 @@
     "static-favicon": "^2.0.0-alpha",
     "stormpath": "^0.18.2",
     "stylus": "^0.54.2"
->>>>>>> 045a1342d6338d5937828427f4620f37b4e12c79
   }
 }

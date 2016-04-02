@@ -35,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // required for passport
 app.use(session({
+	application: {
+    href: 'https://api.stormpath.com/v1/applications/3fz13yjrvd7qe5oGgOD1by'
+},
     secret: process.env.EXPRESS_SECRET,
     key: 'sid',
     cookie: {secure: false},
@@ -84,6 +87,17 @@ app.get('/test', function(req, res){
 	res.sendFile(__dirname + '/public/html/test.html');
 });
 
+app.get('/chat', function(req, res){
+	res.sendFile(__dirname + '/public/html/chat.html');
+});
+
+app.get('/signin', function(req, res){
+	res.sendFile(__dirname + '/public/html/signin.html');
+});
+
+app.get('/signup', function(req, res){
+	res.sendFile(__dirname + '/public/html/signup.html');
+});
 //LAUNCH===================================
 
 server.listen(port, function(){
