@@ -23,14 +23,15 @@ topics = ["Religion",
 	"Hobbies",
 	"Movies and Film",
 	"Literature",
-	"Comedy"
-	"Something"]
+	"Comedy",
+	"Something",
+        "Anything"]
 running = True
 i = 0
 while running == True:
 	topic = topics[i]
 	PUT(topic, '/topics/.json')
 	i += 1
-        if i > len(topics):
+        if i > len(topics)-1:
 		i = 0
-	time.sleep(3)
+	time.sleep(1)
