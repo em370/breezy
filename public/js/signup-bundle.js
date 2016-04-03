@@ -289,7 +289,6 @@ $('#signup-button').click(function(){
     var pass  = $('#myPwd').val();
 	var name = $('#myName').val();
 	var lang = $('#langselect').dropdown('get value');
-	alert(lang);
     ref.createUser({
       email    : e,
       password : pass
