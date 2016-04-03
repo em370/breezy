@@ -1,15 +1,12 @@
 .ui.message
 {
-    position: absolute;
+    position: absolute; 
     bottom: 0;
 }
 
 .pusher
 {
-  height: 99vh;
-  padding: 10%;
-  margin-right: auto;
-  margin-left: auto;
+	height: 99vh;
 }
 body
 {
@@ -22,10 +19,6 @@ body
 	height: calc(100vh - 4em);
 	width: 81%;
 	overflow: auto;
-  right: 0px;
-  padding: 10px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .ui.fluid.action.input
@@ -45,8 +38,15 @@ body
 	text-align: center;
 }
 
-.chatbox.ui.tab.segment
+.ui.center.aligned.segment.transparent
 {
-  position: relative;
-  z-index: 100;
+	background-color: transparent;
+}
+
+#menucloser
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50px;
 }

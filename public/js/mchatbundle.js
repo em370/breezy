@@ -285,34 +285,38 @@ var Firebase = require('Firebase');
 var ref = new Firebase('https://breezytalk.firebaseio.com');
 
 $('document').ready(function(){
-	$('.ui.accordion').accordion();
-	var rooms = [];
-	var myroom="";
-	var socket=io();
-	var name="";
-	var lang="";
-	var runonce = false;
-	$('.tabl').tab();
-	var user = ref.getAuth();
-
+ 	$('.ui.accordion').accordion();
+  	var rooms = [];
+  	var myroom="";
+	var ranroom="";
+  	var socket=io();
+  	var name="";
+  	var lang="";
+ 	var myself = true;
+  	var runonce = false;
+ 	var roomtojoin="";
+  	$('.tabl').tab();
+  	var user = ref.getAuth();
+	
 	var usersRef = ref.child('users');
 	if(!user)
 	{
 		window.location.href = "signin";
 	}
-
+        	
 	var meRef = usersRef.child(user.uid);
 	meRef.on("value", function(snap){
 		name = snap.val().username;
 		lang = snap.val().language;
 	});
-
+		
 	var gRef = meRef.child('groups');
 	gRef.on('child_added', function(snap) {
-
+		
 		name =snap.val().username;
-		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> <span>'+snap.val().name+'</span></a>');
+		$('#grouplist').append('<a class="ui inverted item tabl" data-tab="'+snap.val().name+'"> '+snap.val().name+' </a>');
 		$('#lower').append('<div class="chatbox ui tab segment" data-tab="'+snap.val().name+'" id="ran"></div>');
+		$('#addbuttons').append('<button class="ui button roomaddbutton" id="but'+snap.val().name+'">'+ snap.val().name +'</button>');
 		socket.emit('join', {room: snap.val().name});
 		$('.tabl').tab();
 		/*if(!runonce)
@@ -330,31 +334,52 @@ $('document').ready(function(){
 			runonce = true;
 		}*/
 	});
-
+        
         $('#closable-message .close')
           .on('click', function() {
             $(this)
               .closest('.message')
               .transition('fade');
-        });
-
+        });	
+		
+ 	$('body').on('click', '.roomaddbutton', function(event)
+ 	{
+ 		var whichroom = $(this).text();
+ 		socket.emit('addrequest', {room: ranroom, reqroom: whichroom});
+ 		myself = false;
+ 		$('#friendadder').modal('toggle');
+ 		
+ 	});
+ 	
+ 	$('#yes').click(function(){
+ 		var newgroupname = roomtojoin;
+ 		meRef.child('groups').push().set({
+ 			name: newgroupname
+ 		});
+		$('#roomadder').modal('toggle');
+ 	});
+ 	
+ 	$('#no').click(function(){
+ 		$('#roomadder').modal('toggle');
+ 	});
+ 
         $('#random').click(function(){
 		socket.emit('waiting');
 	});
 
-        $('#logout').click(function(){
+        $('#Logout').click(function(){
 		ref.unauth();
 		window.location.href="signin";
 	});
 
 	$('#sender').click(function(){
 		sendmess();
-	});
-
+	});	
+	
 	$('#groupbutton').click(function(){
 		joingroup();
 	});
-
+	
 	$('#groupinput').keydown(function(key)
 	{
 		if(key.which == 13)
@@ -362,7 +387,7 @@ $('document').ready(function(){
 			joingroup();
 		}
 	});
-
+	
 	$('#messfield').keydown(function(key)
 	{
 		if(key.which == 13)
@@ -370,22 +395,22 @@ $('document').ready(function(){
 			sendmess();
 		}
 	});
-
+	
 	$('body').on('click', '.tabl', function(event)
 	{
 		myroom = $(this).data('tab');
 	});
-
+	
 	$('#addfriend').click(function()
 	{
 		$('#friendadder').modal('toggle');
 	});
-
+	
 	$('#groupjoin').click(function()
 	{
 		$('#groupjoiner').modal('toggle');
 	});
-
+	
 	$('#groupcancel').click(function()
 	{
 		$('#groupjoiner').modal('toggle');
@@ -400,28 +425,43 @@ $('document').ready(function(){
 		$('.randomer').attr('data-tab', data.room);
 		$('.tabl').tab();
 		$('#tfriend').click();
-
-
+		ranroom=data.room;
+		
 	});
-
+	
 	socket.on('gotmessage', function(data){
 
-
+		
 		socket.emit('translate', {name: data.name, room: data.room, message: data.message, lang: lang});
 		//newmessage(data);
 	});
-
+	
+	socket.on('request', function(data){
+ 		roomtojoin=data.room;
+ 		if(myself)
+ 		{
+ 			$('#roominfo').text("Do you want to join "+data.room+"?");
+ 			$('#roomadder').modal('toggle');
+ 		}
+ 		else
+ 		{
+			myself=true;
+		}
+ 	});
 	socket.on('translated', function(data){
 		newmessage(data);
 	});
+	
+	$('#menucloser').click(function(){
+		$('#thebar').sidebar('toggle');
+	});
 	function newmessage(data)
 	{
-		//$("div[data-tab='"+ data.room + "']").append('<i class="'+lang+' flag"></i><p>&#60'+data.name+'&#62'+data.message+'<p>');
 		$("div[data-tab='"+ data.room + "']").append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
 		//$('#ran').append('<p>&#60'+data.name+'&#62'+data.message+'<p>');
 		$("div[data-tab='"+ data.room + "']").scrollTop($("div[data-tab='"+data.room+"']").prop("scrollHeight"));
 	}
-
+	
 	function sendmess()
 	{
 		var mess = $('#messfield').val();
