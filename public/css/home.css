@@ -2,7 +2,6 @@
 {
 	height: 90vh;
 }
-
 .ui.header.blue
 {
 	margin-top: 1.60em;
@@ -25,12 +24,4 @@
 .ui.huge.green.button
 {
 	margin-bottom: 2em;
-}
-
-body
-{
-
-	
-	height: 100vh;
-	width: 100vw;
 }
