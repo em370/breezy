@@ -1,6 +1,7 @@
 var express = require('express');
 var app = require('express')();
 var uuid= require('tower-uuid');
+var useragent = require('express-useragent');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
@@ -9,8 +10,9 @@ var translate = require('yandex-translate')(key);
 app.use(express.static('public'));
 var defaultNsps = '/';
 console.log(uuid());
-
+app.use(useragent.express());
 app.get('/', function(req, res){
+
 	res.sendFile(__dirname + '/public/html/home.html');
 });
 
@@ -31,7 +33,14 @@ app.get('/signin', function(req, res){
 });
 
 app.get('/chat', function(req, res){
-	res.sendFile(__dirname + '/public/html/chat.html');
+	if(req.useragent.isMobile)
+	{
+		res.sendFile(__dirname + '/public/html/mchat.html');
+	}
+	else
+	{
+		res.sendFile(__dirname + '/public/html/chat.html');
+	}
 });
 
 app.get('/aboutus', function(req, res){
@@ -87,15 +96,8 @@ io.sockets.on('connection', function(socket){
 			console.log(res.text);
 			socket.emit('translated', {name: data.name, message: res.text,room: data.room});
 		});
-
-	});
-	
-	socket.on('addrequest', function(data){
-		io.sockets.in(data.room).emit('request', {room: data.reqroom});
-	});
-	
-
 	});	
+});
 
 server.listen(port, function(){
   console.log('listening on port: '+ port);

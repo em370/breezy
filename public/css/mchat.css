@@ -1,0 +1,52 @@
+.ui.message
+{
+    position: absolute;
+    bottom: 0;
+}
+
+.pusher
+{
+  height: 99vh;
+  padding: 10%;
+  margin-right: auto;
+  margin-left: auto;
+}
+body
+{
+	color: red;
+}
+.chatbox
+{
+	background-color:#f8f8ff;
+	position: absolute;
+	height: calc(100vh - 4em);
+	width: 81%;
+	overflow: auto;
+  right: 0px;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ui.fluid.action.input
+{
+	position: absolute;
+	bottom: 0;
+	width:81vw;
+	height: 2.5em;
+}
+
+.chatbox p:nth-child(odd)
+{
+	background-color: #eee;
+}
+.centered
+{
+	text-align: center;
+}
+
+.chatbox.ui.tab.segment
+{
+  position: relative;
+  z-index: 100;
+}
