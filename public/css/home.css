@@ -25,3 +25,12 @@
 {
 	margin-bottom: 2em;
 }
+
+body
+{
+	background-image: url("../assets/BreezyLogo.ico");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.95;
+}
