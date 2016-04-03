@@ -1,7 +1,6 @@
 .segment
 {
 	height: 90vh;
-
 }
 
 .ui.header.blue
@@ -26,4 +25,12 @@
 .ui.huge.green.button
 {
 	margin-bottom: 2em;
+}
+
+body
+{
+
+	
+	height: 100vh;
+	width: 100vw;
 }
