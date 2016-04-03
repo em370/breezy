@@ -37,3 +37,8 @@ body
 {
 	text-align: center;
 }
+
+.ui.center.aligned.segment.transparent
+{
+	background-color: transparent;
+}
